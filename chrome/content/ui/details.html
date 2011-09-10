@@ -146,7 +146,7 @@
 		<div style='clear:both'></div>
 		
 		<!-- Half Content Block -->
-		<article class="half-block clearrm" style='width:540px;margin-right:20px'> 
+		<article class="half-block clearrm" style='width:400px;margin-right:20px'> 
 			
 			<!-- Article Container for safe floating -->
 			<div class="article-container" style='width:inherit;'>
@@ -171,6 +171,7 @@
 								} else {
 									var max =0;
 									for (i=0;i<siteminutes.length;i++){
+										siteminutes[i] = parseFloat(siteminutes[i]);
 										if (siteminutes[i]>max)
 											max=siteminutes[i];
 									}
@@ -203,7 +204,7 @@
 		
 		
 		<!-- Half Content Block -->
-		<article class="half-block clearrm" style='width:540px'>
+		<article class="half-block clearrm" style='width:400px'>
 			
 			<!-- Article Container for safe floating -->
 			<div class="article-container">
@@ -227,6 +228,7 @@
 								} else {
 									var max =0;
 									for (i=0;i<siteminutes.length;i++){
+										siteminutes[i] = parseFloat(siteminutes[i]);
 										if (siteminutes[i]>max)
 											max=siteminutes[i];
 									}

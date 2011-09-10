@@ -324,8 +324,10 @@
 								} else {								
 									var max =0;
 									for (i=0;i<siteminutes.length;i++){
-										if (siteminutes[i]>max)
+										siteminutes[i] = parseFloat(siteminutes[i]);
+										if (siteminutes[i]>max){
 											max=siteminutes[i];
+										}
 									}
 									if (max==0)
 										max=0.01;
@@ -339,8 +341,7 @@
 											color='red';
 										}
 
-										width = Math.floor((siteminutes[i]/max)*200);
-
+										width = Math.floor((siteminutes[i]/max)*350);
 										fs = '';
 										if (50+16*sitenames[i].length>width)
 											fs = 'font-size:10px';
