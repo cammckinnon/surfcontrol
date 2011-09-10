@@ -183,7 +183,7 @@
 										if (50+16*sitenames[i].length>width)
 											fs = 'font-size:10px';
 
-										$('#topsites_wasting').html($('#topsites_wasting').html()+"<div style='float:left;margin-top:15px;color:black;font-weight:bold;font-size:13px;width:20px'>"+(i+1)+". </div><div class='progress-bar "+color+"' style='float:left;width:"+width+"px'><div style='width:100%;'><span style='display:block;overflow:hidden;width:"+width+"px;text-align:center;"+fs+"'>"+sitenames[i]+" ("+siteminutes[i]+" mins)</span></div></div><div style='clear:both'></div>");
+										$('#topsites_wasting').html($('#topsites_wasting').html()+"<div style='float:left;margin-top:15px;color:black;font-weight:bold;font-size:13px;width:20px'>"+(i+1)+". </div><div class='progress-bar "+color+"' style='float:left;width:"+width+"px;min-width:100px'><div style='width:100%;'><span style='display:block;overflow:hidden;width:100%;text-align:center;"+fs+"'>"+sitenames[i]+" ("+siteminutes[i]+" mins)</span></div></div><div style='clear:both'></div>");
 									}
 									animateProgress();
 								}
@@ -239,7 +239,7 @@
 										if (50+16*sitenames[i].length>width)
 											fs = 'font-size:10px';
 
-										$('#topsites_productive').html($('#topsites_productive').html()+"<div style='float:left;margin-top:15px;color:black;font-weight:bold;font-size:13px;width:20px'>"+(i+1)+". </div><div class='progress-bar "+color+"' style='float:left;width:"+width+"px'><div style='width:100%;'><span style='display:block;overflow:hidden;width:"+width+"px;text-align:center;"+fs+"'>"+sitenames[i]+" ("+siteminutes[i]+" mins)</span></div></div><div style='clear:both'></div>");
+										$('#topsites_productive').html($('#topsites_wasting').html()+"<div style='float:left;margin-top:15px;color:black;font-weight:bold;font-size:13px;width:20px'>"+(i+1)+". </div><div class='progress-bar "+color+"' style='float:left;width:"+width+"px;min-width:100px'><div style='width:100%;'><span style='display:block;overflow:hidden;width:100%;text-align:center;"+fs+"'>"+sitenames[i]+" ("+siteminutes[i]+" mins)</span></div></div><div style='clear:both'></div>");
 									}
 								}
 						}						

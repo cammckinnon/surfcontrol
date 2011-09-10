@@ -269,13 +269,17 @@ var urlTracker = {
 }
 
 function tabTracker(aEvent) {
+    //fix by aamir. NICE ONE
+    
     var profile = '';
     var toolbar_button = '';
+
+    var browser = gBrowser.selectedBrowser;  
     var doc = aEvent.originalTarget;
     var win = doc.defaultView;      
+    
     var new_domain = getMainDomain(content.location.href);
-    var referrer = getMainDomain(win.document.referrer);
-
+    var referrer = getMainDomain(browser.contentWindow.document.referrer);
     // we reset the domain even if its blank
     current_domain = new_domain;
     current_ref = referrer;

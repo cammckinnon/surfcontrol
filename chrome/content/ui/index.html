@@ -301,7 +301,7 @@
 		<article class="half-block clearrm" style='width:400px'>
 			
 			<!-- Article Container for safe floating -->
-			<div class="article-container" style='width:500px'>
+			<div class="article-container" style='width:400px'>
 			
 				<!-- Article Header -->
 				<header>
@@ -311,7 +311,7 @@
 				
 				<!-- Article Content -->
 				<section>
-					<p id='topsites'>
+					<p id='topsites' style='width:400px;overflow:visible'>
 						
 					</p>
 
@@ -327,8 +327,8 @@
 										if (siteminutes[i]>max)
 											max=siteminutes[i];
 									}
-
-									console.log(max);
+									if (max==0)
+										max=0.01;
 
 									for (i=0;i<sitenames.length;i++){
 										if (sitetypes[i]=='neutral') {
@@ -339,7 +339,7 @@
 											color='red';
 										}
 
-										width = Math.floor((siteminutes[i]/max)*350);
+										width = Math.floor((siteminutes[i]/max)*200);
 
 										fs = '';
 										if (50+16*sitenames[i].length>width)
