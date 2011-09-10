@@ -1,0 +1,7 @@
+content   surfcontrol                 chrome/content/
+skin      surfcontrol   classic/1.0   chrome/skin/
+locale    surfcontrol   en-US         chrome/locale/en-US/
+
+overlay   chrome://browser/content/browser.xul   chrome://surfcontrol/content/ff-overlay.xul
+style chrome://global/content/customizeToolbar.xul chrome://surfcontrol/skin/overlay.css
+style chrome://global/content/customizeToolbar.xul chrome://surfcontrol/skin/toolbar.css

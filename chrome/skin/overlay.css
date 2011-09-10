@@ -1,0 +1,59 @@
+/* This is just an example.  You shouldn't do this. */
+#surfcontrol-hello
+{
+  color: red ! important;
+}
+
+#surfcontrol-home
+{
+  list-style-image: url("chrome://surfcontrol/skin/toolbar-button.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+#surfcontrol-home:hover
+{
+  -moz-image-region: rect(24px 24px 48px  0px);
+}
+[iconsize="small"] #surfcontrol-home
+{
+  -moz-image-region: rect( 0px 40px 16px 24px);
+}
+[iconsize="small"] #surfcontrol-home:hover
+{
+  -moz-image-region: rect(24px 40px 40px 24px);
+}
+
+#surfcontrol-thumbs-up
+{
+  list-style-image: url("chrome://surfcontrol/skin/thumbs-up-button.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+#surfcontrol-thumbs-up:hover
+{
+  -moz-image-region: rect(24px 24px 48px  0px);
+}
+[iconsize="small"] #surfcontrol-thumbs-up
+{
+  -moz-image-region: rect( 0px 40px 16px 24px);
+}
+[iconsize="small"] #surfcontrol-thumbs-up:hover
+{
+  -moz-image-region: rect(24px 40px 40px 24px);
+}
+
+#surfcontrol-thumbs-down
+{
+  list-style-image: url("chrome://surfcontrol/skin/thumbs-down-button.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+#surfcontrol-thumbs-down:hover
+{
+  -moz-image-region: rect(24px 24px 48px  0px);
+}
+[iconsize="small"] #surfcontrol-thumbs-down
+{
+  -moz-image-region: rect( 0px 40px 16px 24px);
+}
+[iconsize="small"] #surfcontrol-thumbs-down:hover
+{
+  -moz-image-region: rect(24px 40px 40px 24px);
+}

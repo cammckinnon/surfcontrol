@@ -1,0 +1,329 @@
+<html lang="en" class="no-js">
+<head>
+	<title>SurfControl - Details</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	
+	<!-- CSS Styles -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/colors.css">
+	<link rel="stylesheet" href="css/jquery.tipsy.css">
+	<link rel="stylesheet" href="css/jquery.wysiwyg.css">
+	<link rel="stylesheet" href="css/jquery.datatables.css">
+	<link rel="stylesheet" href="css/jquery.nyromodal.css">
+	<link rel="stylesheet" href="css/jquery.datepicker.css">
+	<link rel="stylesheet" href="css/jquery.fileinput.css">
+	<link rel="stylesheet" href="css/jquery.fullcalendar.css">
+	<link rel="stylesheet" href="css/jquery.visualize.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<!-- Google WebFonts -->
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+	<script src="js/libs/modernizr-1.7.min.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script>
+		google.load('visualization', '1', {'packages':['corechart']});
+	</script>
+
+</head>
+
+<!-- Add class .fixed for fixed layout. You would need also edit CSS file for width -->
+
+<body>
+
+	<!-- Fixed Layout Wrapper -->
+	<div class="fixed-wraper;" ≈>
+
+	<!-- Aside Block -->
+	<section role="navigation">
+		<!-- Header with logo and headline -->
+		<header>
+			<h1 style='font-size:25px;font-weight:bold;font-family:Arial;color:#555555'>SurfControl App</h1>
+			<h1>A productivity tool that's fun for the whole family!</h1>
+		</header>
+		
+		<!-- /User Info -->
+		
+		<!-- Main Navigation -->
+		<nav id="main-nav">
+			<ul>
+				<li class=""><a href="index.html" title="" class="dashboard no-submenu">Overview</a></li>
+				<li>
+					<a href="details.html" class="articles no-submenu" title="" >Details</a>
+				</li>
+				<li class="current">
+					<a href="block.html" title="" class="settings no-submenu">Block Sites</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- /Main Navigation -->
+		
+		<!-- Sidebar -->
+		<section class="sidebar nested"> <!-- Use class .nested for diferent style -->
+			<h2>A Productivity App from the Future</h2>
+			<p>Click <b>Overview</b> or <b>Details</b> to see your stats.<br><br>Then <b>Block Sites</b> to prevent future time-wasting.</p>
+		</section>
+		<!-- /Sidebar -->
+		
+		<!-- Sidebar -->
+		<section class="sidebar">
+			<h2>Did you know?</h2>
+			<p>SurfControl was created by two interns from Canada under the codename 'FuzzyPeach' for the <a href="http://mozillalabs.com/blog/2011/06/mozilla-wsoh-world-series-of-hack/">WSOH</a> competition (they won of course).</p>
+			<p class="separator">SurfControl is open-source! You can see the source code and contribute on <a href="">github</a>. Find other cool CSS themes like this on ThemeForest!</p>
+
+		</section>
+		<!-- /Sidebar -->
+	
+	</section>
+	<!-- /Aside Block -->
+	
+	<!-- Main Content -->
+	<section role="main">
+	
+		<!-- Widget Container -->
+		<section id="widgets-container">
+		
+
+		</section>
+		<!-- /Widget Container -->
+		
+		
+		<!-- Half Content Block -->
+		<article class="half-block clearrm">
+			
+			<!-- Article Container for safe floating -->
+			<div class="article-container" style='width:500px;'>
+			
+				<!-- Article Header -->
+				<header style='margin-bottom:9px'>
+					<h2>Limit Access to Sites</h2>
+				</header>
+				<!-- /Article Header -->
+				<script>
+					var saveCallback = function(){}
+					var addRow = function(){}
+					var addRow2 = function(){}
+					var getDomain = function(){}
+					//f should be a function that accepts an array with elements.
+					//{domain: 'domain.com', limit: 2}
+					//it will be called (possibly several times) and each time will provide ONE OF THE FOLLOWING:
+					//  - all and only all of the time-limited domains
+					//  - all and only all of the non-time-limited domains (limit=0)
+					function provideSaveCallback(f){
+						saveCallback = f;
+					}
+
+					function provideGetDomain(f){
+						getDomain=f;
+					}
+
+					//call this once on pageload, providing array a with elements (limit should be in minutes):
+					//{domain: 'domain.com', limit: 2}
+					function populate(a){
+						$(function(){
+						var added1 = false;
+						var added2 = false;
+						for (i=0;i<a.length;i++){
+
+							if (a[i].limit!=0){
+								added1=true;
+								addRow(a[i].domain,a[i].limit)/60000;
+							}else{
+								addRow2(a[i].domain);
+								added2=true;
+							}
+						}
+						$('#rows1').children().find('[type=text]').change();
+						$('#rows2').children().find('[type=text]').change();
+						if (!added1)
+							addRow();
+						if (!added2)
+							addRow2();
+						});
+					}
+
+					function validate(arr){
+						for (i=0;i<arr.length;i++){
+							if (getDomain(arr[i][0])=='' || getDomain(arr[i][0])==undefined){
+								alert('Error: '+arr[i][0]+' is not a valid domain name - did not save.')
+								return false;
+							}
+							if (isNaN(parseInt(arr[i][1])) || arr[i][1]<0 || arr[i][1]!=parseInt(arr[i][1])){
+								alert('Error: '+arr[i][1]+' is not a valid number of minutes - did not save.');
+								return false;
+							}
+						}
+						return true;
+					}
+
+					$(function(){
+						addRow = function(s,t){
+							var row = $("<tr style=''><td style='text-align:left;padding-left:5px'>Block &nbsp;<input type='text' name='t1' value='site name' style='width:130px'>&nbsp;for the day after &nbsp;<input type='text' name='t2' value='0' style='width:35px'> &nbsp;minutes of use.</td><td><input type='button' value='-'></td></tr>");							
+							$(row).insertBefore($('#limit_plusbutton'));
+							$(row).find('[type=text]').first().click(function(){
+								if (this.value=='site name')
+									this.value='';
+							})
+							$(row).find('[type=text]').first().blur(function(){
+								if (this.value=='')
+									this.value='site name';
+							})
+							if (typeof s=="string")
+								$(row).find('[type=text]:eq(0)').val(s);
+							if (typeof t!="undefined")
+								$(row).find('[type=text]:eq(1)').val(t);
+							$(row).find('[name=t1]').change(function(){
+								if (typeof getDomain(this.value) == "undefined"){
+									if (typeof getDomain('http://'+this.value) !="undefined"){
+										this.value='http://'+this.value;
+									}
+								}
+							});
+							$(row).find('[type=text]').keyup(function(){
+								$('#warning1').show()
+							});
+							$(row).find('[type=button]').click(function(){ $(row).remove(); });
+						}
+						$('#plusbutton').click(addRow);
+						$('#save1').click(function(){
+							var info = [];
+							$('#rows1').find('tr[id!=limit_plusbutton]').each(function(i,el){
+								var t1 =  $(el).find('[type=text]:eq(0)')
+								var t2 =  $(el).find('[type=text]:eq(1)')
+								info.push([t1.attr('value'),t2.attr('value')]);
+							})
+							
+							if (validate(info)){
+								$('#warning1').hide(1);
+								saveCallback(info,'limited');
+								$('#saved1').fadeIn(200).delay(1300).fadeOut(200);
+							}
+						})
+						
+					});
+
+					$(function(){
+						addRow2 = function(s){
+							var row = $("<tr style=''><td style='text-align:left;padding-left:5px'>Block access from &nbsp;<input type='text' value='site name' style='width:130px'>&nbsp; at all times.</td><td><input type='button' value='-'></td></tr>");							
+							$(row).insertBefore($('#limit_plusbutton2'));
+							$(row).find('[type=text]').first().click(function(){
+								if (this.value=='site name')
+									this.value='';
+							})
+							$(row).find('[type=text]').first().blur(function(){
+								if (this.value=='')
+									this.value='site name';
+							})
+							if (typeof s=="string")
+								$(row).find('[type=text]:eq(0)').val(s);
+
+							$(row).find('[type=text]').change(function(){
+								if (typeof getDomain(this.value) == "undefined"){
+									if (typeof getDomain('http://'+this.value) !="undefined"){
+										this.value='http://'+this.value;
+									}
+								}
+							});
+							$(row).find('[type=text]').keyup(function(){
+								$('#warning2').show()
+							});
+							$(row).find('[type=button]').click(function(){ $(row).remove(); });
+						}
+						$('#plusbutton2').click(addRow2);
+						$('#save2').click(function(){
+							var info = [];
+							$('#rows2').find('tr[id!=limit_plusbutton2]').each(function(i,el){
+								var t1 =  $(el).find('[type=text]:eq(0)')
+								info.push([t1.attr('value'),0]);
+							})
+							
+							if (validate(info)){
+								$('#warning2').hide(1);
+								saveCallback(info,'notlimited');
+								$('#saved2').fadeIn(200).delay(1300).fadeOut(200);
+							}
+						})
+					});
+
+				</script>
+				<!-- Article Content -->
+				<section style='padding-top:0px'>
+					<table style='width:480px;' id='rows1'>
+
+						<tr id='limit_plusbutton'>
+							<td style='text-align:left;padding-left:5px;width:440px'></td>
+							<td style='text-align:left;padding-left:5px'><input type='button' id='plusbutton' value='+'></td>
+						</tr>
+
+
+					</table>
+					<div style='margin-top:5px'><button class="green small" style='width:80px' id='save1'>Save</button> <span style='color:red;display:none' id='warning1'>(warning: unsaved changes)</span><span style='color:green;display:none' id='saved1'>Saved!</span></div>
+				</section>
+				<!-- /Article Content -->
+			</div>
+			<!-- /Article Container -->
+		</article>
+		<!-- /Half Content Block -->
+
+		<!-- Half Content Block -->
+		<article class="half-block clearrm">
+			
+			<!-- Article Container for safe floating -->
+			<div class="article-container">
+			
+				<!-- Article Header -->
+				<header style='margin-bottom:9px'>
+					<h2>Block Sites</h2>
+				</header>
+				<!-- /Article Header -->
+				
+				<!-- Article Content -->
+				<section style='padding-top:0px'>
+					<table style='width:480px' id='rows2'>
+						<tr id='limit_plusbutton2'>
+							<td style='text-align:left;padding-left:5px;width:440px'></td>
+							<td style='text-align:left;padding-left:5px'><input id='plusbutton2' type='button' value='+'></td>
+						</tr>
+
+
+					</table>
+					<div style='margin-top:5px'><button class="green small" style='width:80px' id='save2'>Save</button> <span style='color:red;display:none' id='warning2'>(warning: unsaved changes)</span><span style='color:green;display:none' id='saved2'>Saved!</span></div>
+					
+				</section>
+				<!-- /Article Content -->
+			
+			</div>
+			<!-- /Article Container -->
+			
+		</article>
+		<!-- /Half Content Block -->
+		
+	
+	</section>
+	<!-- /Main Content -->
+	
+	</div>
+	<!-- /Fixed Layout Wrapper -->
+
+	<!-- JS Libs at the end for faster loading -->
+	
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+	<script src="js/libs/selectivizr.js"></script>
+	<script src="js/jquery/jquery.nyromodal.js"></script>
+	<script src="js/jquery/jquery.tipsy.js"></script>
+	<script src="js/jquery/jquery.wysiwyg.js"></script>
+	<script src="js/jquery/jquery.datatables.js"></script>
+	<script src="js/jquery/jquery.datepicker.js"></script>
+	<script src="js/jquery/jquery.fullcalendar.min.js"></script>
+	<script src="js/jquery/jquery.fileinput.js"></script>
+	<script src="js/jquery/excanvas.js"></script>
+	<script src="js/jquery/jquery.visualize.js"></script>
+	<script src="js/jquery/jquery.visualize.tooltip.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

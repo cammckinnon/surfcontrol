@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Page Blocked by SurfControl</title>
+<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script>
+	$(function(){
+		$('[name=domain]').text(window.location.hash.substring(1));
+	})
+</script>
+</head>
+<body style='background-color:#F3F3F3'>
+<div style='height:100%;height:100%;overflow:hidden'>
+	<div style='position:relative;width:100%;height:100%;top:50%'>
+		<div style='font-family:Lato;font-size:25px;margin: auto auto auto auto;width:600px;height:100px;margin-top:-50px;text-align:center'>
+			<span name='domain'></span> &nbsp;-&nbsp; Page blocked by SurfControl.
+			<div style='font-family:Arial;font-size:11px;margin-top:10px;text-align:left;'>
+				You're seeing this page because you have installed SurfControl (a productivity addon for Firefox) and have configured it to block <span name='domain'></span>. You can change this using the SurfControl dashboard by clicking Tools -&gt; SurfControl Dashboard -&gt; Block Sites.
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://surfcontrol/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://surfcontrol/locale/overlay.dtd">
+<overlay id="surfcontrol-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="helper.js"/>
+  <script src="sqlfunctions.js"/>
+  <script src="overlay.js"/>
+  <script src="ff-overlay.js"/>
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="surfcontrol-strings" src="chrome://surfcontrol/locale/overlay.properties"/>
+  </stringbundleset>
+
+  <menupopup id="menu_ToolsPopup">
+    <menuitem id="surfcontrol-dashlink" label="&surfcontrol.label;"
+              oncommand="surfcontrol.onMenuItemCommand(event);"/>
+    <menuitem id="surfcontrol-rmrf" label="Clear SurfControl Data"
+              oncommand="surfcontrol.clearSurfControlData(event);"/>
+  </menupopup>
+
+  <toolbarpalette id="BrowserToolbarPalette">
+      <toolbaritem id="surfcontrol-rating-buttons" tooltiptext="SurfControl Ratings">
+
+        <toolbarbutton id="surfcontrol-home" class="toolbarbutton-1 chromeclass-toolbar-additional"
+          label="&surfcontrolToolbarButton.label;" tooltiptext="SurfControl Dashboard"
+          onclick="openDashboard();"/>
+
+        <toolbarbutton id="surfcontrol-thumbs-down" class="toolbarbutton-1 chromeclass-toolbar-additional"
+          label="&surfcontrolToolbarButton.label;" tooltiptext="Mark website as Time-wasting"
+          onclick="toolbarButtonAction('bad');"/>
+
+        <toolbarbutton id="surfcontrol-thumbs-up" class="toolbarbutton-1 chromeclass-toolbar-additional"
+          label="&surfcontrolToolbarButton.label;" tooltiptext="Mark website as Productive"
+          onclick="toolbarButtonAction('good');"/>
+
+        </toolbaritem>
+  </toolbarpalette>
+</overlay>

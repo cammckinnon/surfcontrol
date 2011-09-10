@@ -1,0 +1,389 @@
+<!doctype html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<title>SurfControl - Overview</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	
+	<!-- CSS Styles -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/colors.css">
+	<link rel="stylesheet" href="css/jquery.tipsy.css">
+	<link rel="stylesheet" href="css/jquery.wysiwyg.css">
+	<link rel="stylesheet" href="css/jquery.datatables.css">
+	<link rel="stylesheet" href="css/jquery.nyromodal.css">
+	<link rel="stylesheet" href="css/jquery.datepicker.css">
+	<link rel="stylesheet" href="css/jquery.fileinput.css">
+	<link rel="stylesheet" href="css/jquery.fullcalendar.css">
+	<link rel="stylesheet" href="css/jquery.visualize.css">
+
+	<!-- Google WebFonts -->
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+	<script src="js/libs/modernizr-1.7.min.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js'></script>
+	<script>
+		google.load('visualization', '1', {'packages':['corechart']});
+		function animateProgress(){
+			$('.progress-bar').each(function() {
+				var progress = $(this).children().width();
+				$(this).children().css({ 'width':0 }).animate({width:progress},3000);
+			});
+		}
+	</script>
+</head>
+
+<!-- Add class .fixed for fixed layout. You would need also edit CSS file for width -->
+<body>
+
+	<!-- Fixed Layout Wrapper -->
+	<div class="fixed-wraper">
+
+	<!-- Aside Block -->
+	<section role="navigation">
+		<!-- Header with logo and headline -->
+		<header>
+			<h1 style='font-size:25px;font-weight:bold;font-family:Arial;color:#555555'>SurfControl App</h1>
+			<h1>A productivity tool that's fun for the whole family!</h1>
+		</header>
+		
+		<!-- /User Info -->
+		
+		<!-- Main Navigation -->
+		<nav id="main-nav">
+			<ul>
+				<li class="current"><a href="index.html" title="" class="dashboard no-submenu">Overview</a></li> <!-- Use class .no-submenu to open link instead of a sub menu-->
+				<!-- Use class .current to open submenu on page load -->
+				<li class="" >
+					<a href="details.html" class="articles no-submenu" title="" >Details</a>
+				</li>
+				<li>
+					<a href="block.html" title="" class="settings no-submenu">Block Sites</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- /Main Navigation -->
+		
+		<!-- Sidebar -->
+		<section class="sidebar nested"> <!-- Use class .nested for diferent style -->
+			<h2>A Productivity App from the Future</h2>
+			<p>Click <b>Overview</b> or <b>Details</b> to see your stats.<br><br>Then <b>Block Sites</b> to prevent future time-wasting.</p>
+		</section>
+		<!-- /Sidebar -->
+		
+		<!-- Sidebar -->
+		<section class="sidebar">
+			<h2>Did you know?</h2>
+			<p>SurfControl was created by two interns from Canada under the codename 'FuzzyPeach' for the <a href="http://mozillalabs.com/blog/2011/06/mozilla-wsoh-world-series-of-hack/">WSOH</a> competition (they won of course).</p>
+			<p class="separator">SurfControl is open-source! You can see the source code and contribute on <a href="">github</a>. Find other cool CSS themes like this on ThemeForest!</p>
+
+		</section>
+		<!-- /Sidebar -->
+	
+	</section>
+	<!-- /Aside Block -->
+	
+	<!-- Main Content -->
+	<section role="main" >
+	
+		<!-- Widget Container -->
+		<section id="widgets-container" style='width:100%'>
+			<!-- Widget Box -->
+			
+			<!-- Widget Box -->
+
+			<!-- Widget Box -->
+		</section>
+
+		<script>
+			
+			function init_widget_productivity_week(productivity){
+				if (isNaN(productivity))
+					return;
+				if (productivity<0){
+					$('#widgets-container').html($('#widgets-container').html()+"<div class='widget decrease' id='new-orders'><span>decrease</span><p><strong>-"+Math.abs(productivity)+"<sup>%</sup></strong><font style='font-size:10px;margin-left:-6px'>less productive (past week)</font></p></div>");
+				}else{
+					$('#widgets-container').html($('#widgets-container').html()+"<div class='widget increase' id='new-visitors'><span>increase</span><p><strong>+"+Math.abs(productivity)+"<sup>%</sup></strong><font style='font-size:10px;margin-left:-7px'>more productive (past week)</font></p></div>");
+				}
+			}
+
+			function init_widget_productivity_day(productivity){
+				if (isNaN(productivity))
+					return;
+				if (productivity<0){
+					$('#widgets-container').html($('#widgets-container').html()+"<div class='widget decrease' id='new-orders'><span>decrease</span><p><strong>-"+Math.abs(productivity)+"<sup>%</sup></strong><font style='font-size:10px;margin-left:-6px'>less productive (past day)</font></p></div>");
+				}else{
+					$('#widgets-container').html($('#widgets-container').html()+"<div class='widget increase' id='new-visitors'><span>increase</span><p><strong>+"+Math.abs(productivity)+"<sup>%</sup></strong><font style='font-size:10px;margin-left:-7px'>more productive (past day)</font></p></div>");
+				}
+			}
+
+			function init_widget_badsite(sitename){
+				if (sitename=='')
+					return;
+				$('#widgets-container').html($('#widgets-container').html()+'<div class="widget decrease" id="new-tasks"><p><strong style="font-size:14px">'+sitename+'</strong>This is your worst time-waster.</p></div>');
+				
+			}
+			
+			function init_widget_goodsite(sitename){
+				if (sitename=='')
+					return;
+				$('#widgets-container').html($('#widgets-container').html()+'<div class="widget increase" id="new-tasks-green"><p><strong style="font-size:14px">'+sitename+'</strong><g style="font-size:11px">This is your most productive site.</g></p></div>');
+				
+			}
+		</script>
+		<!-- /Widget Container -->
+		
+		
+		<article class="full-block clearfix">
+		
+			<!-- Article Container for safe floating -->
+			<div class="article-container;">
+			
+				<!-- Article Header -->
+				<header style='padding:1px;margin-bottom:0;z-index:1;position:relative;margin-right:-10px'>
+					<h2>Productivity over time</h2>
+				</header>
+				<!-- /Article Header -->
+				
+				<!-- Article Content -->
+				<section id='areagraph' style='position:relative;top:-5px;left:-25px;width:100%;overflow-y: hidden;'>
+				</section>
+
+				<script>
+					function init_areagraph(dates, timeWasting, neutral, productive) {
+					  if (dates.length == 0 || timeWasting.length == 0 || neutral.length == 0 || productive.length == 0) {
+					  	document.getElementById('areagraph').innerHTML = '<img style="border: 0px" src="chrome://surfcontrol/content/ui/img/no_data/line_chart.png">';
+					  } else {
+						  // Some raw data (not necessarily accurate)
+						  var countries =
+						    ['Productive sites', 'Unmarked sites', 'Time-wasting sites'];
+						  var months = dates;
+
+						  var productionByCountry = [productive, neutral, timeWasting];					                             
+						  // Create and populate the data table.
+						  var data = new google.visualization.DataTable();
+						  data.addColumn('string', 'Month');
+						  for (var i = 0; i < countries.length; ++i) {
+						    data.addColumn('number', countries[i]);
+						  }
+						  data.addRows(months.length);
+						  for (var i = 0; i < months.length; ++i) {
+						    data.setCell(i, 0, months[i]);
+						  }
+						  for (var i = 0; i < countries.length; ++i) {
+						    var country = productionByCountry[i];
+						    for (var month = 0; month < months.length; ++month) {
+						      data.setCell(month, i + 1, country[month]);
+						    }
+						  }
+						  var w = document.body.offsetWidth-305;
+						  if (w<500)
+						  w=500;
+						  // Create and draw the visualization.
+						  var ac = new google.visualization.AreaChart(document.getElementById('areagraph'));
+						  ac.draw(data, {
+						    isStacked: true,
+
+						    width: w,
+						    height: 250,
+						    
+						    colors:['blue','grey','red'],
+						    vAxis: {title: "Avg Minutes per day"},
+							hAxis: {title: "",maxAlternation: 1},
+							legendTextStyle:{fontSize: 12}
+
+						  });
+						}
+					}								
+				</script>
+				<!-- /Article Content -->
+			
+			</div>
+			<!-- /Article Container -->
+		<div style='clear:both'></div>
+		<article class="full-block clearfix">
+		
+		<div class="clearfix"></div> <!-- We're really sorry for this, but because of IE7 we still need separated div with clearfix -->
+		
+		<!-- Half Content Block -->
+		<article class="full-block clearfix" style='min-width:490px;max-width:1200px'>
+		<article class="half-block" style='width:490px;margin-right:10px'>
+		
+			<!-- Article Container for safe floating -->
+			<div class="article-container" style='width:490px;'>
+			
+				<!-- Article Header -->
+				<header>
+					<h2>Browsing habits this week</h2>
+				</header>
+				<!-- /Article Header -->
+				
+				<!-- Article Content -->
+				<section>
+					<div style='float:left;width:500px;'>
+
+						<div style='float:left;height:400px;width:50%;text-align:center;margin-left:-10px'>
+						<div style='font-weight:bold'>Past 7 days</div>
+						<div id='piechart1' style=''></div>
+						</div>
+						<div style='float:left;height:400px;width:50%;text-align:center;'>
+						<div style='font-weight:bold;'>Just today</div>
+						<div id='piechart2'></div>
+						</div>
+					</div>
+					<script>
+					function init_pie_7days(timeWasting, neutral, productive) {
+						var hasInt=false;
+				      	if (parseInt(timeWasting) == 0 && parseInt(neutral) == 0 && parseInt(productive) == 0) {
+					  		document.getElementById('piechart1').innerHTML = '<img style="border: 0px" src="chrome://surfcontrol/content/ui/img/no_data/pie_chart.png">';
+					  	} else {
+					        var data = new google.visualization.DataTable();
+					        data.addColumn('string', 'Task');
+					        data.addColumn('number', 'Hours per Day');
+					        data.addRows(4);
+					        data.setValue(0, 0, 'Working');
+					        data.setValue(0, 1, productive);
+					        data.setValue(1, 0, 'Neutral');
+					        data.setValue(1, 1, neutral);
+					        data.setValue(2, 0, 'Wasting Time');
+					        data.setValue(2, 1, timeWasting);
+
+					        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+					        chart.draw(data, {width: 250, height: 250,
+					        				  pieSliceText: 'percentage',
+					        				  fontSize:12,
+					        				  colors:['#2277ff','#AAAAAA','red'],
+					        				  legend:'none'});
+				      	}
+				      }
+				      
+				      function init_pie_today(timeWasting, neutral, productive) {
+				      	if (parseInt(timeWasting) == 0 && parseInt(neutral) == 0 && parseInt(productive) == 0) {
+					  		document.getElementById('piechart2').innerHTML = '<img style="border: 0px" src="chrome://surfcontrol/content/ui/img/no_data/pie_chart.png">';
+					  	} else {
+					        var data = new google.visualization.DataTable();
+					        data.addColumn('string', 'Task');
+					        data.addColumn('number', 'Hours per Day');
+					        data.addRows(4);
+					        data.setValue(0, 0, 'Working');
+					        data.setValue(0, 1, productive);
+					        data.setValue(1, 0, 'Neutral');
+					        data.setValue(1, 1, neutral);
+					        data.setValue(2, 0, 'Wasting Time');
+					        data.setValue(2, 1, timeWasting);
+
+					        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+					        chart.draw(data, {width: 250, height: 250,
+					        				  pieSliceText: 'percentage',
+					        				  fontSize:12,
+					        				  colors:['#2277ff','#AAAAAA','red'],
+					        				  legend:'none'});
+				       	}
+				      }
+					</script>
+
+					
+				</section>
+				<!-- /Article Content -->
+			
+			</div>
+			<!-- /Article Container -->
+			
+		</article>
+		<!-- /Half Content Block -->
+		
+		<!-- Half Content Block -->
+		<article class="half-block clearrm" style='width:400px'>
+			
+			<!-- Article Container for safe floating -->
+			<div class="article-container" style='width:500px'>
+			
+				<!-- Article Header -->
+				<header>
+					<h2>Top sites this week</h2>
+				</header>
+				<!-- /Article Header -->
+				
+				<!-- Article Content -->
+				<section>
+					<p id='topsites'>
+						
+					</p>
+
+					<script>
+						 
+
+						function init_topsites(sitenames, siteminutes, sitetypes){
+								if (sitenames.length == 0 || siteminutes.length == 0 || sitetypes.length == 0) {
+					  				document.getElementById('topsites').innerHTML = '<img style="border: 0px" src="chrome://surfcontrol/content/ui/img/no_data/bar_chart.png">';
+								} else {								
+									var max =0;
+									for (i=0;i<siteminutes.length;i++){
+										if (siteminutes[i]>max)
+											max=siteminutes[i];
+									}
+
+									console.log(max);
+
+									for (i=0;i<sitenames.length;i++){
+										if (sitetypes[i]=='neutral') {
+											color='grey';
+										} else if (sitetypes[i]=='good') {
+											color='blue';
+										} else {
+											color='red';
+										}
+
+										width = Math.floor((siteminutes[i]/max)*350);
+
+										fs = '';
+										if (50+16*sitenames[i].length>width)
+											fs = 'font-size:10px';
+
+										$('#topsites').html($('#topsites').html()+"<div style='float:left;margin-top:15px;color:black;font-weight:bold;font-size:13px;width:20px'>"+(i+1)+". </div><div class='progress-bar "+color+"' style='float:left;width:"+width+"px;min-width:100px'><div style='width:100%;'><span style='display:block;overflow:hidden;width:100%;text-align:center;"+fs+"'>"+sitenames[i]+" ("+siteminutes[i]+" mins)</span></div></div><div style='clear:both'></div>");
+									}
+									animateProgress();
+								}
+						}
+					</script>
+
+					
+				</section>
+				<!-- /Article Content -->
+			
+			</div>
+			<!-- /Article Container -->
+			
+		</article>
+		<!-- /Half Content Block -->
+		</article>
+	
+	</section>
+	<!-- /Main Content -->
+	
+	</div>
+	<!-- /Fixed Layout Wrapper -->
+
+	<!-- JS Libs at the end for faster loading -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+	<script src="js/libs/selectivizr.js"></script>
+	<script src="js/jquery/jquery.nyromodal.js"></script>
+	<script src="js/jquery/jquery.tipsy.js"></script>
+	<script src="js/jquery/jquery.wysiwyg.js"></script>
+	<script src="js/jquery/jquery.datatables.js"></script>
+	<script src="js/jquery/jquery.datepicker.js"></script>
+	<script src="js/jquery/jquery.fileinput.js"></script>
+	<script src="js/jquery/jquery.fullcalendar.min.js"></script>
+	<script src="js/jquery/excanvas.js"></script>
+	<script src="js/jquery/jquery.visualize.js"></script>
+	<script src="js/jquery/jquery.visualize.tooltip.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

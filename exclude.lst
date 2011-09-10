@@ -1,0 +1,5 @@
+*.git*
+*.sh*
+*psds*
+*.DS_Store*
+exclude.lst
