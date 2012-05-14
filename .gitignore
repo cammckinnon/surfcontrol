@@ -1,1 +1,4 @@
 *.xpi
+.*.sw[a-z]
+*.un~
+Session.vim
